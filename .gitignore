@@ -130,6 +130,8 @@ celerybeat.pid
 # Environments
 .env
 .venv
+mlops/
+mlops
 env/
 venv/
 ENV/
