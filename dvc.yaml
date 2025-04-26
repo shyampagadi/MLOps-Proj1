@@ -1,0 +1,27 @@
+stages:
+  ingest:
+    cmd: python src/data_ingestion.py
+    deps:
+      - src/data_ingestion.py
+      - configs/data_config.yml
+    outs:
+      - data/raw/titanic.csv
+
+  preprocess:
+    cmd: python src/preprocessing.py
+    deps:
+      - data/raw/titanic.csv
+      - src/preprocessing.py
+      - configs/data_config.yml
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - data/processed/train.csv
+      - src/train.py
+      - configs/params.yml
+    outs:
+      - mlruns  # Now explicitly tracked

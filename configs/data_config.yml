@@ -1,0 +1,11 @@
+data_ingestion:
+  source_url: "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+  raw_path: "data/raw/titanic.csv"
+
+preprocessing:
+  columns_to_drop: ["PassengerId", "Name", "Ticket", "Cabin"]
+  target: "Survived"
+  train_path: "data/processed/train.csv"
+  test_path: "data/processed/test.csv"
+  test_size: 0.2
+  random_state: 42

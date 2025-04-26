@@ -1,0 +1,63 @@
+schema: '2.0'
+stages:
+  ingest:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: configs/data_config.yml
+      hash: md5
+      md5: 713a60408b848558e580099a6255164c
+      size: 369
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 18ad23b934ec97bb0657026d429c6eb3
+      size: 530
+    outs:
+    - path: data/raw/titanic.csv
+      hash: md5
+      md5: 2e0e4b0aeeb40b47ee0915eba73534bc
+      size: 62894
+  preprocess:
+    cmd: python src/preprocessing.py
+    deps:
+    - path: configs/data_config.yml
+      hash: md5
+      md5: 713a60408b848558e580099a6255164c
+      size: 369
+    - path: data/raw/titanic.csv
+      hash: md5
+      md5: 2e0e4b0aeeb40b47ee0915eba73534bc
+      size: 62894
+    - path: src/preprocessing.py
+      hash: md5
+      md5: c3eac9897116f52868770a048db65973
+      size: 1645
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 729b6704f541ee1fbb36db250486dd2e
+      size: 4867
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 0bb9ec3921bb057411e86bc3970cd4d8
+      size: 18920
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: configs/params.yml
+      hash: md5
+      md5: 8115423f538189f545b9b56c4c97fca3
+      size: 123
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 0bb9ec3921bb057411e86bc3970cd4d8
+      size: 18920
+    - path: src/train.py
+      hash: md5
+      md5: 31d0d17691349dc158b0667cc7a2ab5f
+      size: 1866
+    outs:
+    - path: mlruns
+      hash: md5
+      md5: b480904bb24190c8d4898ec3ff843e3a.dir
+      size: 5238
+      nfiles: 21

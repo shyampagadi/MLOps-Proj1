@@ -1,0 +1,6 @@
+model:
+  class: "sklearn.linear_model.LogisticRegression"
+  params:
+    C: 0.90
+    max_iter: 500
+    random_state: 42
